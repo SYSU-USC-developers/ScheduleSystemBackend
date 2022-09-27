@@ -21,17 +21,17 @@ public interface EmployeeSTDao {
     EmployeeST getSTByNetid(@Param("netid") String netid);
 
     // 提交班表
-    @Insert("insert into employeest(netid, free_time, intention, acceptAdjust) values (#{netid}, #{free_time}, #{intention}, #{acceptAdjust})")
+    @Insert("insert into employeest(netid, free_time, intention, accept_adjust) values (#{netid}, #{free_time}, #{intention}, #{accept_adjust})")
     int insertST(@Param("netid") String netid,
                      @Param("free_time") String free_time,
                      @Param("intention") Boolean intention,
-                     @Param("acceptAdjust") Boolean acceptAdjust);
+                     @Param("accept_adjust") Boolean accept_adjust);
 
 
     // 修改班表
-    @Update("update employeest set free_time = #{free_time}, intention = #{intention}, acceptAdjust = #{acceptAdjust} where netid = #{netid}")
+    @Update("update employeest set free_time = #{free_time}, intention = #{intention}, accept_adjust = #{accept_adjust} where netid = #{netid}")
     int updateST(@Param("netid") String netid,
                      @Param("free_time") String free_time,
                      @Param("intention") Boolean intention,
-                     @Param("acceptAdjust") Boolean acceptAdjust);
+                     @Param("accept_adjust") Boolean accept_adjust);
 }

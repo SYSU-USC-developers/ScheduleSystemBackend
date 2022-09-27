@@ -17,5 +17,5 @@ public class EmployeeST {
     private String netid;
     private String free_time;
     private Boolean intention;
-    private Boolean acceptAdjust;
+    private Boolean accept_adjust;
 }

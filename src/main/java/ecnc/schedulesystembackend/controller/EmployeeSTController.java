@@ -4,11 +4,7 @@ import ecnc.schedulesystembackend.bean.EmployeeST;
 import ecnc.schedulesystembackend.service.EmployeeSTService;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,6 +25,44 @@ public class EmployeeSTController {
             return ret;
         } else {
             ret.put("netid", employeeST.getNetid());
+            ret.put("free_time", employeeST.getFree_time());
+            ret.put("intention", employeeST.getIntention());
+            ret.put("accept_adjust", employeeST.getAccept_adjust());
+
+            return ret;
+        }
+    }
+
+    @PostMapping("/est")
+    public Object submitST(@RequestBody EmployeeST employeeST) {
+        Boolean ret_value = employeeSTService.submitST(employeeST.getNetid(),
+                                                        employeeST.getFree_time(),
+                                                        employeeST.getIntention(),
+                                                        employeeST.getAccept_adjust());
+        Map<String, Object> ret = new HashMap<>();
+
+        if (ret_value == false) {
+            ret.put("msg", "submit failed");
+            return ret;
+        } else {
+            ret.put("msg", "submit succeed");
+            return ret;
+        }
+    }
+
+    @PutMapping("/est/{netid}")
+    public Object submitST(@PathVariable String netid, @RequestBody EmployeeST employeeST) {
+        Boolean ret_value = employeeSTService.updateST(employeeST.getNetid(),
+                                                        employeeST.getFree_time(),
+                                                        employeeST.getIntention(),
+                                                        employeeST.getAccept_adjust());
+        Map<String, Object> ret = new HashMap<>();
+
+        if (ret_value == false) {
+            ret.put("msg", "update failed");
+            return ret;
+        } else {
+            ret.put("msg", "update succeed");
             return ret;
         }
     }

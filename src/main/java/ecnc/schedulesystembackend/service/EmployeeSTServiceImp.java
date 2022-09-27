@@ -16,11 +16,12 @@ public class EmployeeSTServiceImp implements EmployeeSTService {
     }
 
     @Override
-    public Boolean submitST(String netid, String free_time, Boolean intention, Boolean acceptAdjust) {
-        if (getSTByNetid(netid) == null) {
-            return employeeSTDao.insertST(netid, free_time, intention, acceptAdjust) > 0;
-        } else {
-            return employeeSTDao.updateST(netid, free_time, intention, acceptAdjust) > 0;
-        }
+    public Boolean submitST(String netid, String free_time, Boolean intention, Boolean accept_adjust) {
+        return employeeSTDao.insertST(netid, free_time, intention, accept_adjust) > 0;
+    }
+
+    @Override
+    public Boolean updateST(String netid, String free_time, Boolean intention, Boolean accept_adjust) {
+        return employeeSTDao.updateST(netid, free_time, intention, accept_adjust) > 0;
     }
 }
